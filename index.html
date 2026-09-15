@@ -1,79 +1,160 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube do Zero</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .container {
-            text-align: center;
-            color: white;
-            padding: 40px;
-            max-width: 600px;
-        }
-        
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-        
-        .button {
-            display: inline-block;
-            background-color: #ff0000;
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            transition: background-color 0.3s;
-            margin: 10px;
-        }
-        
-        .button:hover {
-            background-color: #cc0000;
-        }
-        
-        .info {
-            margin-top: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube do Zero</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#f5f7fb;color:#172033}
+header{background:linear-gradient(135deg,#111827,#dc2626);color:white;padding:34px 20px}
+header .wrap,.wrap{max-width:1100px;margin:auto}
+header h1{margin:0 0 8px;font-size:34px}header p{margin:0;opacity:.9}
+nav{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:5}
+.nav{max-width:1100px;margin:auto;display:flex;gap:8px;overflow:auto;padding:10px}
+.nav button{border:0;background:#f3f4f6;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;white-space:nowrap}
+.nav button.active{background:#111827;color:white}
+main{padding:28px 20px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;box-shadow:0 5px 20px #0000000a}
+.card h2,.card h3{margin-top:0}.stat{font-size:30px;font-weight:800}.muted{color:#667085}
+.progress{height:12px;background:#e5e7eb;border-radius:99px;overflow:hidden}.bar{height:100%;background:#dc2626;width:0;transition:.3s}
+section{display:none}.visible{display:block}.module{display:flex;align-items:center;gap:14px;padding:15px;border:1px solid #e5e7eb;border-radius:12px;margin:10px 0}
+.module input{width:20px;height:20px}.module label{cursor:pointer;flex:1}
+textarea,input[type=text]{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:10px;font:inherit}
+textarea{min-height:150px;resize:vertical}
+button.primary{background:#dc2626;color:#fff;border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:pointer;margin-top:10px}
+.idea{padding:12px;background:#f9fafb;border-radius:10px;margin:8px 0;border-left:4px solid #dc2626}
+.calendar{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.day{padding:14px;background:#fff;border:1px solid #e5e7eb;border-radius:12px}.day strong{display:block;margin-bottom:8px}
+footer{text-align:center;color:#667085;padding:30px}
+@media(max-width:600px){header h1{font-size:27px}.grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎬 YouTube do Zero</h1>
-        <p>Bem-vindo ao seu site hospedado no GitHub Pages!</p>
-        
-        <div class="info">
-            <p><strong>URL do seu site:</strong></p>
-            <p>https://vitor123nm.github.io/youtube-do-zero/</p>
-        </div>
-        
-        <a href="#" class="button">Começar</a>
-    </div>
+<header><div class="wrap">
+<h1>🎥 YouTube do Zero</h1>
+<p>Seu painel para aprender, planejar e criar seus primeiros vídeos.</p>
+</div></header>
+
+<nav><div class="nav">
+<button class="active" data-tab="inicio">Início</button>
+<button data-tab="curso">Curso</button>
+<button data-tab="roteiro">Gerador de roteiro</button>
+<button data-tab="ideias">Ideias</button>
+<button data-tab="calendario">Calendário</button>
+</div></nav>
+
+<main class="wrap">
+<section id="inicio" class="visible">
+<div class="grid">
+<div class="card"><div class="muted">Progresso do curso</div><div class="stat" id="percent">0%</div><div class="progress"><div class="bar" id="bar"></div></div></div>
+<div class="card"><div class="muted">Tarefas concluídas</div><div class="stat" id="done">0/10</div><p class="muted">Marque as etapas na aba Curso.</p></div>
+<div class="card"><div class="muted">Objetivo</div><h3>Publicar seu primeiro vídeo</h3><p class="muted">Planeje → grave → edite → publique.</p></div>
+</div>
+<div class="card" style="margin-top:18px">
+<h2>🚀 Comece por aqui</h2>
+<p>Use o curso em ordem e registre suas ideias e roteiros neste painel.</p>
+<button class="primary" onclick="openTab('curso')">Começar o curso</button>
+</div>
+</section>
+
+<section id="curso">
+<div class="card"><h2>📚 Curso — 10 etapas</h2><p class="muted">Marque cada etapa quando terminar.</p>
+<div id="modules"></div></div>
+</section>
+
+<section id="roteiro">
+<div class="card">
+<h2>📝 Gerador de roteiro</h2>
+<p class="muted">Preencha os campos e gere uma estrutura de vídeo.</p>
+<label>Tema do vídeo</label><input id="tema" type="text" placeholder="Ex.: 5 dicas para começar no Roblox">
+<label style="display:block;margin-top:14px">Público</label><input id="publico" type="text" placeholder="Ex.: iniciantes">
+<button class="primary" onclick="gerarRoteiro()">Gerar roteiro</button>
+<div id="saidaRoteiro" style="margin-top:16px"></div>
+</div>
+</section>
+
+<section id="ideias">
+<div class="card">
+<h2>💡 Gerador de ideias</h2><p class="muted">Digite um assunto para receber ideias de vídeos.</p>
+<input id="assunto" type="text" placeholder="Ex.: Roblox, games, tecnologia">
+<button class="primary" onclick="gerarIdeias()">Gerar ideias</button>
+<div id="saidaIdeias" style="margin-top:16px"></div>
+</div>
+</section>
+
+<section id="calendario">
+<div class="card"><h2>📅 Calendário de conteúdo — 30 dias</h2><p class="muted">Uma sugestão por dia para manter consistência.</p><div class="calendar" id="calendar"></div></div>
+</section>
+</main>
+<footer>YouTube do Zero • Material educativo para iniciantes</footer>
+
+<script>
+const modules=[
+"Escolha o tema e o objetivo do seu canal","Defina seu público","Encontre ideias de vídeos",
+"Aprenda a montar um roteiro","Prepare a gravação","Grave seu primeiro vídeo",
+"Faça uma edição básica","Crie uma thumbnail","Escolha título e descrição",
+"Publique e analise o resultado"
+];
+const ideasBase=[
+"Tutorial passo a passo","5 erros que iniciantes cometem","Guia para iniciantes",
+"Respondendo perguntas comuns","Top 5 dicas","Antes e depois","Desafio de 24 horas",
+"Comparação de opções","Coisas que eu gostaria de saber antes de começar",
+"Checklist para iniciantes"
+];
+const days=[
+"Definir tema do canal","Anotar 10 ideias","Escolher público","Escrever roteiro",
+"Testar gravação","Gravar introdução","Gravar conteúdo","Selecionar melhores cenas",
+"Editar começo","Editar final","Adicionar texto","Revisar áudio","Criar thumbnail",
+"Escrever título","Escrever descrição","Revisar vídeo","Exportar vídeo","Assistir antes de publicar",
+"Publicar","Compartilhar com amigos","Anotar feedback","Criar nova ideia","Escrever novo roteiro",
+"Gravar novo vídeo","Editar novo vídeo","Criar thumbnail","Publicar segundo vídeo",
+"Comparar resultados","Anotar aprendizados","Planejar próximos vídeos"
+];
+
+function getState(){return JSON.parse(localStorage.getItem("ytzero")||"[]")}
+function saveState(s){localStorage.setItem("ytzero",JSON.stringify(s))}
+function renderModules(){
+ const state=getState(), box=document.getElementById("modules"); box.innerHTML="";
+ modules.forEach((m,i)=>{
+  const d=document.createElement("div");d.className="module";
+  d.innerHTML=`<input type="checkbox" id="m${i}" ${state[i]?"checked":""}><label for="m${i}"><strong>${i+1}.</strong> ${m}</label>`;
+  d.querySelector("input").onchange=e=>{let s=getState();s[i]=e.target.checked;saveState(s);updateStats()};
+  box.appendChild(d);
+ });updateStats();
+}
+function updateStats(){
+ const s=getState(), n=s.filter(Boolean).length, p=Math.round(n/modules.length*100);
+ document.getElementById("done").textContent=`${n}/${modules.length}`;
+ document.getElementById("percent").textContent=p+"%";document.getElementById("bar").style.width=p+"%";
+}
+function openTab(id){
+ document.querySelectorAll("section").forEach(x=>x.classList.remove("visible"));
+ document.getElementById(id).classList.add("visible");
+ document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>openTab(b.dataset.tab));
+
+function gerarRoteiro(){
+ const tema=document.getElementById("tema").value.trim()||"seu tema";
+ const pub=document.getElementById("publico").value.trim()||"seu público";
+ document.getElementById("saidaRoteiro").innerHTML=`
+ <div class="card"><h3>Roteiro: ${tema}</h3>
+ <p><b>1. Gancho:</b> Comece mostrando o que o vídeo vai ajudar ${pub} a descobrir.</p>
+ <p><b>2. Introdução:</b> Apresente rapidamente o tema e o que será mostrado.</p>
+ <p><b>3. Conteúdo:</b> Explique 3 a 5 pontos em ordem, usando exemplos.</p>
+ <p><b>4. Conclusão:</b> Recapitule as principais ideias.</p>
+ <p><b>5. Encerramento:</b> Convide o público a acompanhar os próximos conteúdos.</p>
+ </div>`;
+}
+function gerarIdeias(){
+ const a=document.getElementById("assunto").value.trim()||"seu assunto";
+ document.getElementById("saidaIdeias").innerHTML=ideasBase.map((x,i)=>`<div class="idea"><b>${i+1}.</b> ${x} sobre ${a}</div>`).join("");
+}
+function renderCalendar(){
+ document.getElementById("calendar").innerHTML=days.map((x,i)=>`<div class="day"><strong>Dia ${i+1}</strong>${x}</div>`).join("");
+}
+renderModules();renderCalendar();
+</script>
 </body>
 </html>
